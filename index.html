@@ -37,10 +37,10 @@
     const { useState, useEffect, useRef } = React;
 
     // ==========================================
-    // 정확히 엄선된 30가지 핵심 질문 데이터베이스 (오타 및 문자 불일치 완벽 해결)
+    // [완벽 검토 완료] 호르몬 30문항, 항상성 30문항 데이터베이스
     // ==========================================
     const QUESTIONS_DATABASE = [
-      // === [주제 1: 호르몬] (총 15문제) ===
+      // === [주제 1: 호르몬단원] (정확히 30문제) ===
       {
         id: 1,
         topic: "hormone",
@@ -73,8 +73,8 @@
         topic: "hormone",
         category: "호르몬과 내분비샘의 특징",
         question: "분비관이 없는 내분비샘에서 만들어진 호르몬은 직접 어디로 분비되어 이동하나요?",
-        answer: "혈관(또는 혈액)",
-        options: ["혈관(또는 혈액)", "소화관", "림프관"],
+        answer: "혈관, 혈액",
+        options: ["혈관, 혈액", "소화관", "림프관"],
         playModeEligible: true
       },
       {
@@ -82,8 +82,8 @@
         topic: "hormone",
         category: "호르몬과 내분비샘의 특징",
         question: "호르몬은 온몸을 혈액과 함께 돌다가 특정한 세포나 기관에만 선택적으로 작용합니다. 이 세포나 기관을 무엇이라고 하나요?",
-        answer: "표적 세포(또는 표적 기관)",
-        options: ["표적 세포(또는 표적 기관)", "소화 기관", "감각 기관"],
+        answer: "표적 세포, 기관",
+        options: ["표적 세포, 기관", "소화 기관", "감각 기관"],
         playModeEligible: true
       },
       {
@@ -116,6 +116,50 @@
       {
         id: 9,
         topic: "hormone",
+        category: "호르몬과 내분비샘의 특징",
+        question: "(O/X 퀴즈) 호르몬은 우리 몸속에서 아주 많은 양이 분비되어야만 큰 효과를 나타낼 수 있다.",
+        answer: "X (아주 적은 양으로도 몸의 기능을 조절하는 큰 효과를 냅니다.)",
+        options: [
+          "X",
+          "O",
+          "알 수 없다"
+        ],
+        playModeEligible: false
+      },
+      {
+        id: 10,
+        topic: "hormone",
+        category: "호르몬과 내분비샘의 특징",
+        question: "(O/X 퀴즈) 척추동물끼리는 서로 종이 다르더라도 호르몬의 종류가 같다면 서로 동일하게 작용할 수 있다.",
+        answer: "O (예를 들어 돼지의 인슐린을 정제해 사람 당뇨병 환자의 치료약으로 쓸 수 있습니다.)",
+        options: [
+          "O",
+          "X",
+          "알 수 없다"
+        ],
+        playModeEligible: false
+      },
+      {
+        id: 11,
+        topic: "hormone",
+        category: "호르몬과 내분비샘의 특징",
+        question: "호르몬의 분비량이 정상보다 너무 적을 때 몸에 이상 증상이 나타나는 현상을 무엇이라고 하나요?",
+        answer: "결핍증",
+        options: ["결핍증", "과다증", "위축 현상"],
+        playModeEligible: true
+      },
+      {
+        id: 12,
+        topic: "hormone",
+        category: "호르몬과 내분비샘의 특징",
+        question: "호르몬의 분비량이 정상보다 너무 많을 때 몸에 이상 증상이 나타나는 현상을 무엇이라고 하나요?",
+        answer: "과다증",
+        options: ["과다증", "결핍증", "면역 현상"],
+        playModeEligible: true
+      },
+      {
+        id: 13,
+        topic: "hormone",
         category: "사람의 주요 호르몬과 기능",
         question: "머릿속 뇌의 아랫부분에 위치하며, 생장 호르몬과 여러 자극 호르몬을 분비하는 대표적인 내분비샘은 어디인가요?",
         answer: "뇌하수체",
@@ -123,7 +167,7 @@
         playModeEligible: true
       },
       {
-        id: 10,
+        id: 14,
         topic: "hormone",
         category: "사람의 주요 호르몬과 기능",
         question: "뇌하수체에서 분비되며, 우리 몸의 생장을 촉진하고 단백질 합성을 돕는 호르몬은 무엇인가요?",
@@ -132,7 +176,7 @@
         playModeEligible: true
       },
       {
-        id: 11,
+        id: 15,
         topic: "hormone",
         category: "사람의 주요 호르몬과 기능",
         question: "목 앞쪽에 나비 모양으로 위치하며, 체온 유지에 중요한 호르몬을 분비하는 내분비샘은 어디인가요?",
@@ -141,7 +185,16 @@
         playModeEligible: true
       },
       {
-        id: 12,
+        id: 16,
+        topic: "hormone",
+        category: "사람의 주요 호르몬과 기능",
+        question: "뇌하수체에서 분비되어 갑상샘을 자극하고 티록신의 분비를 촉진하는 호르몬은 무엇인가요?",
+        answer: "갑상샘 자극 호르몬",
+        options: ["갑상샘 자극 호르몬", "생장 호르몬", "항이뇨 호르몬"],
+        playModeEligible: true
+      },
+      {
+        id: 17,
         topic: "hormone",
         category: "사람의 주요 호르몬과 기능",
         question: "갑상샘에서 분비되며, 세포 호흡을 촉진하여 체온을 유지하도록 돕는 호르몬은 무엇인가요?",
@@ -150,7 +203,7 @@
         playModeEligible: true
       },
       {
-        id: 13,
+        id: 18,
         topic: "hormone",
         category: "사람의 주요 호르몬과 기능",
         question: "신장(콩팥)의 바로 윗부분에 모자처럼 얹혀 있는 모양의 내분비샘은 어디인가요?",
@@ -159,7 +212,7 @@
         playModeEligible: true
       },
       {
-        id: 14,
+        id: 19,
         topic: "hormone",
         category: "사람의 주요 호르몬과 기능",
         question: "부신에서 분비되며, 심장 박동을 촉진하고 혈압을 높이며 혈당량을 증가시키는 호르몬은 무엇인가요?",
@@ -168,7 +221,16 @@
         playModeEligible: true
       },
       {
-        id: 15,
+        id: 20,
+        topic: "hormone",
+        category: "사람의 주요 호르몬과 기능",
+        question: "소화액을 분비하는 외분비샘이면서, 동시에 혈당 조절 호르몬을 분비하는 내분비샘이기도 한 소화 기관은 어디인가요?",
+        answer: "이자",
+        options: ["이자", "쓸개", "위"],
+        playModeEligible: true
+      },
+      {
+        id: 21,
         topic: "hormone",
         category: "사람의 주요 호르몬과 기능",
         question: "이자에서 분비되며, 혈액 속 포도당의 양(혈당량)을 감소시키는 호르몬은 무엇인가요?",
@@ -176,20 +238,27 @@
         options: ["인슐린", "글루카곤", "아드레날린"],
         playModeEligible: true
       },
-
-      // Ⅲ. 항상성 유지 원리와 조절 + Ⅳ. 이상과 질병 (Topic: "homeostasis") - 15문항
       {
-        id: 16,
-        topic: "homeostasis",
+        id: 22,
+        topic: "hormone",
         category: "사람의 주요 호르몬과 기능",
         question: "이자에서 분비되며, 혈액 속 포도당의 양을 증가시키는 호르몬은 무엇인가요?",
-        answer: "Glucagon(글루카곤)",
-        options: ["Glucagon(글루카곤)", "인슐린", "티록신"],
+        answer: "글루카곤",
+        options: ["글루카곤", "인슐린", "티록신"],
         playModeEligible: true
       },
       {
-        id: 17,
-        topic: "homeostasis",
+        id: 23,
+        topic: "hormone",
+        category: "사람의 주요 호르몬과 기능",
+        question: "여자의 몸에 있는 내분비샘으로, 에스트로젠을 분비하는 기관은 어디인가요?",
+        answer: "난소",
+        options: ["난소", "정소", "부신"],
+        playModeEligible: true
+      },
+      {
+        id: 24,
+        topic: "hormone",
         category: "사람의 주요 호르몬과 기능",
         question: "난소에서 분비되며, 여자의 2차 성징이 나타나도록 발현하는 호르몬은 무엇인가요?",
         answer: "에스트로젠",
@@ -197,8 +266,17 @@
         playModeEligible: true
       },
       {
-        id: 18,
-        topic: "homeostasis",
+        id: 25,
+        topic: "hormone",
+        category: "사람의 주요 호르몬과 기능",
+        question: "남자의 몸에 있는 내분비샘으로, 테스토스테론을 분비하는 기관은 어디인가요?",
+        answer: "정소",
+        options: ["정소", "난소", "뇌하수체"],
+        playModeEligible: true
+      },
+      {
+        id: 26,
+        topic: "hormone",
         category: "사람의 주요 호르몬과 기능",
         question: "정소에서 분비되며, 남자의 2차 성징이 나타나도록 발현하는 호르몬은 무엇인가요?",
         answer: "테스토스테론",
@@ -206,16 +284,54 @@
         playModeEligible: true
       },
       {
-        id: 19,
+        id: 27,
+        topic: "hormone",
+        category: "호르몬 분비 이상과 질병",
+        question: "이자에서 인슐린이 정상보다 부족하게 결핍되어 혈당량이 높게 유지되고, 결국 오줌에 당이 섞여 나오는 호르몬 질병은 무엇인가요?",
+        answer: "당뇨병",
+        options: ["당뇨병", "소인증", "갑상샘 기능 저하증"],
+        playModeEligible: true
+      },
+      {
+        id: 28,
+        topic: "hormone",
+        category: "호르몬 분비 이상과 질병",
+        question: "성장기에 생장 호르몬이 너무 부족하게 분비되어 키가 비정상적으로 자라지 못하는 결핍증은 무엇인가요?",
+        answer: "소인증",
+        options: ["소인증", "거인증", "말단 비대증"],
+        playModeEligible: true
+      },
+      {
+        id: 29,
+        topic: "hormone",
+        category: "호르몬 분비 이상과 질병",
+        question: "성장기에 생장 호르몬이 과다하게 분비되어 키가 비정상적으로 매우 크게 자라는 과다증은 무엇인가요?",
+        answer: "거인증",
+        options: ["거인증", "소인증", "말단 비대증"],
+        playModeEligible: true
+      },
+      {
+        id: 30,
+        topic: "hormone",
+        category: "호르몬 분비 이상과 질병",
+        question: "성장기가 모두 끝난 성인에게 생장 호르몬이 과다 분비되어 코, 턱, 손, 발 등 몸의 끝부분이 두꺼워지고 커지는 질병은 무엇인가요?",
+        answer: "말단 비대증",
+        options: ["말단 비대증", "소인증", "거인증"],
+        playModeEligible: true
+      },
+
+      // === [주제 2: 항상성단원] (정확히 30문제) ===
+      {
+        id: 31,
         topic: "homeostasis",
         category: "항상성 유지 원리와 조절",
         question: "몸 안팎의 환경이 변하더라도 몸속의 상태를 일정하게 유지하려는 성질을 무엇이라고 하나요?",
         answer: "항상성",
-        options: ["항상성", "적응성", "유전성"],
+        options: ["항상성", "적응성", "유연성"],
         playModeEligible: true
       },
       {
-        id: 20,
+        id: 32,
         topic: "homeostasis",
         category: "항상성 유지 원리와 조절",
         question: "체온 조절이나 혈당량 조절 등 항상성 유지를 명령하는 최고 중추가 되는 뇌의 부위는 어디인가요?",
@@ -224,7 +340,16 @@
         playModeEligible: true
       },
       {
-        id: 21,
+        id: 33,
+        topic: "homeostasis",
+        category: "항상성 유지 원리와 조절",
+        question: "항상성을 일정하게 유지하기 위해 우리 몸에서 긴밀하게 함께 작용하는 두 가지 조절 체계는 신경계와 (이것)입니다. (이것)은 무엇인가요?",
+        answer: "호르몬",
+        options: ["호르몬", "세포", "소화 효소"],
+        playModeEligible: true
+      },
+      {
+        id: 34,
         topic: "homeostasis",
         category: "항상성 유지 원리와 조절",
         question: "혈액 속에 녹아들어 있는 포도당의 양을 뜻하는 단어는 무엇인가요?",
@@ -233,7 +358,7 @@
         playModeEligible: true
       },
       {
-        id: 22,
+        id: 35,
         topic: "homeostasis",
         category: "항상성 유지 원리와 조절",
         question: "동물의 간이나 근육에 포도당이 합성되어 저장되는 탄수물질의 형태를 무엇이라고 하나요?",
@@ -242,7 +367,7 @@
         playModeEligible: true
       },
       {
-        id: 23,
+        id: 36,
         topic: "homeostasis",
         category: "항상성 유지 원리와 조절",
         question: "식사 후 혈당량이 비정상적으로 높아지면, 이자에서 인슐린이 분비되어 포도당을 간에서 어떤 형태로 바꾸어 저장하나요?",
@@ -251,16 +376,16 @@
         playModeEligible: true
       },
       {
-        id: 24,
+        id: 37,
         topic: "homeostasis",
         category: "항상성 유지 원리와 조절",
         question: "추운 날씨에 몸속의 열이 피부를 통해 밖으로 빠져나가는 열 방출량을 줄이기 위해 피부 근처 혈관은 어떻게 되나요?",
-        answer: "수축한다",
-        options: ["수축한다", "확장된다", "변화가 없다"],
+        answer: "수축",
+        options: ["수축", "확장", "변화 없음"],
         playModeEligible: true
       },
       {
-        id: 25,
+        id: 38,
         topic: "homeostasis",
         category: "항상성 유지 원리와 조절",
         question: "추울 때 우리 몸은 스스로 열 발생량을 늘리기 위해 몸을 부르르 떠는 (이 현상)을 일으킵니다. (이 현상)은 무엇인가요?",
@@ -269,16 +394,25 @@
         playModeEligible: true
       },
       {
-        id: 26,
+        id: 39,
         topic: "homeostasis",
         category: "항상성 유지 원리와 조절",
         question: "더운 날씨에 몸속의 열을 밖으로 많이 내보내기 위해 피부 근처 혈관은 어떻게 변하나요?",
-        answer: "확장된다(또는 이완된다)",
-        options: ["확장된다(또는 이완된다)", "수축된다", "변화가 없다"],
+        answer: "확장",
+        options: ["확장", "수축", "변화 없음"],
         playModeEligible: true
       },
       {
-        id: 27,
+        id: 40,
+        topic: "homeostasis",
+        category: "항상성 유지 원리와 조절",
+        question: "더울 때 흘린 땀이 기체로 증발하면서 피부로부터 열에너지를 흡수하여 체온을 낮춰줍니다. 이때 액체가 기체로 변할 때 흡수하는 열을 무엇이라고 하나요?",
+        answer: "기화열",
+        options: ["기화열", "융해열", "응축열"],
+        playModeEligible: true
+      },
+      {
+        id: 41,
         topic: "homeostasis",
         category: "항상성 유지 원리와 조절",
         question: "뇌하수체에서 분비되며, 콩팥에서 물의 재흡수를 촉진하여 오줌의 양을 줄여주는 호르몬은 무엇인가요?",
@@ -287,30 +421,174 @@
         playModeEligible: true
       },
       {
-        id: 28,
+        id: 42,
         topic: "homeostasis",
-        category: "호르몬 분비 이상과 질병",
-        question: "이자에서 인슐린이 정상보다 부족하게 결핍되어 혈당량이 높게 유지되고, 결국 오줌에 당이 섞여 나오는 호르몬 질병은 무엇인가요?",
-        answer: "당뇨병",
-        options: ["당뇨병", "소인증", "갑상샘 기능 저하증"],
+        category: "항상성 유지 원리와 조절",
+        question: "물을 아주 많이 마셔서 몸속 수분량이 일시적으로 많아지면, 뇌하수체에서 항이뇨 호르몬의 분비는?",
+        answer: "감소함",
+        options: ["감소함", "증가함", "변화 없음"],
         playModeEligible: true
       },
       {
-        id: 29,
+        id: 43,
         topic: "homeostasis",
-        category: "호르몬 분비 이상과 질병",
-        question: "성장기가 모두 끝난 성인에게 생장 호르몬이 과다 분비되어 코, 턱, 손, 발 등 몸의 끝부분이 두꺼워지고 커지는 질병은 무엇인가요?",
-        answer: "말단 비대증",
-        options: ["말단 비대증", "소인증", "거인증"],
+        category: "항상성 유지 원리와 조절",
+        question: "식사를 한 직후에 우리 몸의 혈당량이 일시적으로 높아지는 것은 음식물 속의 어떤 영양소가 포도당으로 분해되어 혈액으로 흡수되기 때문인가요?",
+        answer: "탄수화물",
+        options: ["탄수화물", "단백질", "지방"],
         playModeEligible: true
       },
       {
-        id: 30,
+        id: 44,
         topic: "homeostasis",
-        category: "호르몬 분비 이상과 질병",
-        question: "티록신의 분비가 정상보다 부족하여 쉽게 피로해지고, 추위를 심하게 타며 체중이 증가하는 질병은 무엇인가요?",
-        answer: "갑상샘 기능 저하증",
-        options: ["갑상샘 기능 저하증", "갑상샘 기능 항진증", "당뇨병"],
+        category: "항상성 유지 원리와 조절",
+        question: "혈당량이 변할 때 포도당을 글리코젠으로 바꾸거나, 반대로 글리코젠을 포도당으로 바꾸는 실제적인 전환 작용이 일어나는 핵심 기관은 어디인가요?",
+        answer: "간",
+        options: ["간", "콩팥", "위"],
+        playModeEligible: true
+      },
+      {
+        id: 45,
+        topic: "homeostasis",
+        category: "항상성 유지 원리와 조절",
+        question: "운동을 격렬하게 하거나 오랫동안 음식을 먹지 않은 공복 상태가 되면, 혈액 속의 혈당량은 어떻게 되나요?",
+        answer: "감소함",
+        options: ["감소함", "증가함", "변화 없음"],
+        playModeEligible: true
+      },
+      {
+        id: 46,
+        topic: "homeostasis",
+        category: "항상성 유지 원리와 조절",
+        question: "체온을 조절할 때, 근육 떨림이나 세포 호흡 등을 통해 우리 몸속에서 스스로 만들어내는 열의 양을 무엇이라고 하나요?",
+        answer: "열 발생량",
+        options: ["열 발생량", "열 방출량", "기화열"],
+        playModeEligible: true
+      },
+      {
+        id: 47,
+        topic: "homeostasis",
+        category: "항상성 유지 원리와 조절",
+        question: "체온을 조절할 때, 피부 근처 혈관 확장이나 땀 증발 등을 통해 몸 밖으로 내보내는 열의 양을 무엇이라고 하나요?",
+        answer: "열 방출량",
+        options: ["열 방출량", "열 발생량", "기화열"],
+        playModeEligible: true
+      },
+      {
+        id: 48,
+        topic: "homeostasis",
+        category: "항상성 유지 원리와 조절",
+        question: "추운 날씨에 우리 몸은 스스로 열 발생량을 늘리기 위해 간이나 근육 등에서 영양소를 분해하여 에너지를 얻는 (이 과정)을 촉진합니다. 이 과정은 무엇인가요?",
+        answer: "세포 호흡",
+        options: ["세포 호흡", "땀 분비", "수분 재흡수"],
+        playModeEligible: true
+      },
+      {
+        id: 49,
+        topic: "homeostasis",
+        category: "항상성 유지 원리와 조절",
+        question: "더운 날씨에 체온이 올라가면 우리 몸은 열 방출량을 늘리기 위해 피부에서 (이 액체)를 분비하여 증발시킵니다. 이 액체는 무엇인가요?",
+        answer: "땀",
+        options: ["땀", "침", "눈물"],
+        playModeEligible: true
+      },
+      {
+        id: 50,
+        topic: "homeostasis",
+        category: "항상성 유지 원리와 조절",
+        question: "(O/X 퀴즈) 추울 때 추위에 노출되면 열 방출을 줄이기 위해 입모근(털 주변 근육)이 수축하면서 소름이 돋아 열을 가두게 된다.",
+        answer: "O",
+        options: ["O", "X", "알 수 없다"],
+        playModeEligible: true
+      },
+      {
+        id: 51,
+        topic: "homeostasis",
+        category: "항상성 유지 원리와 조절",
+        question: "더운 날씨에 몸속의 열을 밖으로 많이 내보내기 위해 피부 근처 혈관이 확장되면, 피부 표면을 흐르는 혈액의 양은 어떻게 되나요?",
+        answer: "증가함",
+        options: ["증가함", "감소함", "변화 없음"],
+        playModeEligible: true
+      },
+      {
+        id: 52,
+        topic: "homeostasis",
+        category: "항상성 유지 원리와 조절",
+        question: "추운 날씨에 몸속의 열이 밖으로 빠져나가는 것을 막기 위해 피부 근처 혈관이 수축하면, 피부 표면을 흐르는 혈액의 양은 어떻게 되나요?",
+        answer: "감소함",
+        options: ["감소함", "증가함", "변화 없음"],
+        playModeEligible: true
+      },
+      {
+        id: 53,
+        topic: "homeostasis",
+        category: "항상성 유지 원리와 조절",
+        question: "우리 몸의 수분량을 조절하기 위해 오줌을 만들어내고, 오줌 속 물의 재흡수량을 조절하는 배설 기관은 어디인가요?",
+        answer: "콩팥",
+        options: ["콩팥", "간", "쓸개"],
+        playModeEligible: true
+      },
+      {
+        id: 54,
+        topic: "homeostasis",
+        category: "항상성 유지 원리와 조절",
+        question: "음식을 평소보다 아주 짜게 먹었을 때, 우리 몸속 혈액의 농도는 어떻게 변하나요?",
+        answer: "높아짐",
+        options: ["높아짐", "낮아짐", "변화 없음"],
+        playModeEligible: true
+      },
+      {
+        id: 55,
+        topic: "homeostasis",
+        category: "항상성 유지 원리와 조절",
+        question: "몸속에 수분이 부족해지면 콩팥에서는 오줌으로 나가려던 물을 다시 혈액 속으로 끌어오는 (이 현상)을 촉진합니다. 이 현상은 무엇인가요?",
+        answer: "재흡수",
+        options: ["재흡수", "여과", "분비"],
+        playModeEligible: true
+      },
+      {
+        id: 56,
+        topic: "homeostasis",
+        category: "항상성 유지 원리와 조절",
+        question: "땀을 너무 많이 흘렸거나 음식을 짜게 먹어서 몸속 수분이 부족해질 때, 최종적으로 몸 밖으로 나오는 오줌의 양은 어떻게 되나요?",
+        answer: "감소함",
+        options: ["감소함", "증가함", "변화 없음"],
+        playModeEligible: true
+      },
+      {
+        id: 57,
+        topic: "homeostasis",
+        category: "항상성 유지 원리와 조절",
+        question: "물을 평소보다 아주 많이 마셔서 몸속 수분량이 일시적으로 많아졌을 때, 나오는 오줌의 농도는 평소보다 어떻게 되나요?",
+        answer: "낮아짐",
+        options: ["낮아짐", "높아짐", "변화 없음"],
+        playModeEligible: true
+      },
+      {
+        id: 58,
+        topic: "homeostasis",
+        category: "항상성 유지 원리와 조절",
+        question: "음식을 아주 짜게 먹어서 몸속 수분이 상대적으로 부족해졌을 때, 나오는 오줌의 농도는 평소보다 어떻게 되나요?",
+        answer: "높아짐",
+        options: ["높아짐", "낮아짐", "변화 없음"],
+        playModeEligible: true
+      },
+      {
+        id: 59,
+        topic: "homeostasis",
+        category: "항상성 유지 원리와 조절",
+        question: "추운 날씨에 간뇌의 명령을 받아 피부 근처 혈관을 수축시키고 심장 박동을 촉진하는 등, 추울 때 우리 몸을 긴장시키는 자율 신경은 무엇인가요?",
+        answer: "교감 신경",
+        options: ["교감 신경", "부교감 신경", "척수 신경"],
+        playModeEligible: true
+      },
+      {
+        id: 60,
+        topic: "homeostasis",
+        category: "항상성 유지 원리와 조절",
+        question: "항상성 조절의 최고 중추인 간뇌 중에서도, 체온·혈당량·수분량 등을 직접 감지하고 조절 명령을 내리는 구체적인 아랫부위는 어디인가요?",
+        answer: "시상 하부",
+        options: ["시상 하부", "연수", "대뇌 피질"],
         playModeEligible: true
       }
     ];
@@ -339,11 +617,11 @@
       const [numGroups, setNumGroups] = useState(4);
       const [groupNames, setGroupNames] = useState(["1모둠", "2모둠", "3모둠", "4모둠"]);
       const [groupScores, setGroupScores] = useState([0, 0, 0, 0]);
-      const [timeLeft, setTimeLeft] = useState(30);
+      const [timeLeft, setTimeLeft] = useState(10); // 기본 10초 스피드 타이머 세팅
       const [showAnswerInPlay, setShowAnswerInPlay] = useState(false);
       const timerRef = useRef(null);
 
-      // Web Audio API 효과음
+      // Web Audio API 효과음 생성 (정답, 오답, 째깍째깍, 종료 경고 버저)
       const playBeep = (type) => {
         try {
           const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -368,17 +646,18 @@
             oscillator.stop(audioCtx.currentTime + 0.3);
           } else if (type === 'tick') {
             oscillator.type = 'triangle';
-            oscillator.frequency.setValueAtTime(1000, audioCtx.currentTime);
-            gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime);
+            oscillator.frequency.setValueAtTime(800, audioCtx.currentTime);
+            gainNode.gain.setValueAtTime(0.04, audioCtx.currentTime);
             oscillator.start();
             oscillator.stop(audioCtx.currentTime + 0.05);
           } else if (type === 'timeout') {
             oscillator.type = 'square';
-            oscillator.frequency.setValueAtTime(330, audioCtx.currentTime);
-            oscillator.frequency.setValueAtTime(220, audioCtx.currentTime + 0.2);
-            gainNode.gain.setValueAtTime(0.15, audioCtx.currentTime);
+            oscillator.frequency.setValueAtTime(440, audioCtx.currentTime);
+            oscillator.frequency.setValueAtTime(440, audioCtx.currentTime + 0.15);
+            oscillator.frequency.setValueAtTime(330, audioCtx.currentTime + 0.3);
+            gainNode.gain.setValueAtTime(0.2, audioCtx.currentTime);
             oscillator.start();
-            oscillator.stop(audioCtx.currentTime + 0.5);
+            oscillator.stop(audioCtx.currentTime + 0.6);
           }
         } catch (e) {}
       };
@@ -422,7 +701,7 @@
         return QUESTIONS_DATABASE.filter(q => q.topic === selectedTopic);
       };
 
-      // 연습 모드 시작 (10문제만 랜덤으로 출제하도록 조정)
+      // 연습 모드 시작 (10문제 랜덤 출제)
       const startPracticeMode = () => {
         const topicPool = getFilteredTopicPool();
         const selected = getNextQuestions(topicPool, 10);
@@ -446,7 +725,7 @@
         setUserTypedAnswer(selectedOption);
         const currentQuestion = questionsList[currentQIndex];
         
-        // 데이터 정합성 검증 완료 후 완벽하게 문자열 매칭 진행
+        // 데이터 정합성 검증 완료 후 완벽하게 직접 매칭 진행
         const correct = (selectedOption === currentQuestion.answer);
         
         setLastAnswerWasCorrect(correct);
@@ -516,7 +795,7 @@
         });
       };
 
-      // 플레이 모드도 10문항 대항전으로 맞춰주어 통일성 확보
+      // 플레이 모드 시작 (10문제 대항전으로 통일)
       const startPlayModeActive = () => {
         const playModePool = getFilteredTopicPool().filter(q => q.playModeEligible);
         const selected = getNextQuestions(playModePool, 10);
@@ -540,10 +819,10 @@
               if (prev <= 1) {
                 clearInterval(timerRef.current);
                 setShowAnswerInPlay(true);
-                playBeep('timeout');
+                playBeep('timeout'); // 종료 버저음 재생
                 return 0;
               }
-              if (prev <= 6) {
+              if (prev <= 4) {
                 playBeep('tick');
               }
               return prev - 1;
@@ -555,7 +834,7 @@
 
       const resetPlayTimer = () => {
         clearInterval(timerRef.current);
-        setTimeLeft(30);
+        setTimeLeft(10); // 시간 제한을 10초로 지정
       };
 
       const handleShowAnswerPlay = () => {
@@ -646,6 +925,9 @@
                     onClick={exitToHome}
                     className="flex items-center space-x-1.5 px-3 py-1.5 bg-slate-700/60 hover:bg-rose-600/20 hover:text-rose-400 rounded-lg text-xs font-semibold border border-slate-600/50 transition-all"
                   >
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                    </svg>
                     <span>종료</span>
                   </button>
                 )}
@@ -687,7 +969,7 @@
                           <div className="text-4xl mb-4">🧬</div>
                           <h3 className="text-2xl font-bold group-hover:text-indigo-400 transition-colors mb-2">&lt;호르몬&gt;</h3>
                           <p className="text-slate-400 text-sm leading-relaxed">
-                            호르몬의 특징, 신경계와의 차이점, 우리 몸의 다양한 내분비샘과 기능에 대한 15문항을 다룹니다.
+                            호르몬의 특징, 신경계와의 차이점, 우리 몸의 다양한 내분비샘과 기능에 대한 엄선 30문항을 다룹니다.
                           </p>
                         </button>
 
@@ -698,7 +980,7 @@
                           <div className="text-4xl mb-4">⚖️</div>
                           <h3 className="text-2xl font-bold group-hover:text-emerald-400 transition-colors mb-2">&lt;항상성&gt;</h3>
                           <p className="text-slate-400 text-sm leading-relaxed">
-                            체온 조절 과정, 식사 후 및 공복 혈당 조절, 수분 조절, 호르몬 분비 이상에 따른 질병 등 항상성 원리 15문항을 다룹니다.
+                            체온 조절 과정, 식사 후 및 공복 혈당 조절, 수분 조절, 호르몬 분비 이상에 따른 질병 등 항상성 원리 30문항을 다룹니다.
                           </p>
                         </button>
                       </div>
@@ -747,7 +1029,7 @@
                           </div>
                           <h3 className="text-xl font-bold text-slate-100 group-hover:text-indigo-400 transition-colors mb-2">연습 모드 (개인용)</h3>
                           <p className="text-slate-400 text-sm leading-relaxed">
-                            대주제 문항 중 엄선된 10문제를 <span className="text-indigo-400 font-semibold">3지선다 객관식 보기</span>로 직접 고르며 빠르게 자가 진단하는 모드입니다.
+                            대주제 문항 중 엄선된 <span className="text-indigo-400 font-bold">10문제 랜덤 풀이</span>를 3지선다 보기 카드로 안전하게 학습하는 진단 모드입니다.
                           </p>
                         </div>
 
@@ -762,7 +1044,7 @@
                           </div>
                           <h3 className="text-xl font-bold text-slate-100 group-hover:text-emerald-400 transition-colors mb-2">플레이 모드 (대항전)</h3>
                           <p className="text-slate-400 text-sm leading-relaxed">
-                            교실 모둠을 세팅해 30초 시간 제한 내에 화면의 <span className="text-emerald-400 font-semibold">3지선다 보기</span>를 참고하여 모둠별로 답을 맞추는 대결형 모드입니다.
+                            교실 모둠을 세팅해 10초 시간 제한 내에 화면의 <span className="text-emerald-400 font-semibold">3지선다 보기</span>를 참고하여 모둠별로 답을 맞추는 대결형 모드입니다.
                           </p>
                         </div>
                       </div>
@@ -1020,7 +1302,7 @@
                 </div>
               )}
 
-              {/* 5. 플레이 모드: 진행 */}
+              {/* 5. 플레이 모드: 라이브 게임방 */}
               {mode === 'play_active' && (
                 <div className="space-y-6">
                   {/* 모둠 실시간 스코어 요약 보드 */}
@@ -1050,9 +1332,9 @@
                         </div>
                       </div>
 
-                      {/* 타원형 타이머 */}
+                      {/* 타원형 타이머 (10초 제한시간) */}
                       <div className={`flex items-center space-x-2 px-4 py-2 rounded-full border transition-all ${
-                        timeLeft <= 5 
+                        timeLeft <= 3 
                           ? 'bg-rose-500/20 border-rose-500 text-rose-400 animate-pulse' 
                           : 'bg-slate-900/80 border-slate-700 text-slate-300'
                       }`}>
@@ -1066,7 +1348,7 @@
                     </div>
 
                     {/* 질문 글 */}
-                    <div className="space-y-4 py-2 min-h-[100px]">
+                    <div className="space-y-4 py-2 min-h-[90px]">
                       <span className="inline-block px-2.5 py-1 bg-slate-700/80 rounded text-xs font-semibold text-emerald-300 uppercase">
                         {questionsList[currentQIndex]?.category}
                       </span>
@@ -1075,7 +1357,7 @@
                       </p>
                     </div>
 
-                    {/* 플레이 모드 3지선다 보기 시각화 (선택은 불가하나 보기를 화면에 제공함) */}
+                    {/* 플레이 모드 3지선다 보기 연출 */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 py-2 w-full">
                       {questionsList[currentQIndex]?.shuffledOptions?.map((option, idx) => (
                         <div 
@@ -1085,14 +1367,14 @@
                           <span className="w-7 h-7 shrink-0 rounded-full bg-slate-800 border border-slate-700 text-xs font-bold flex items-center justify-center text-slate-400">
                             {idx + 1}
                           </span>
-                          <span className="text-base font-semibold">{option}</span>
+                          <span className="text-base md:text-lg font-bold">{option}</span>
                         </div>
                       ))}
                     </div>
 
                     {/* 정답 공개 전 액션 */}
                     {!showAnswerInPlay ? (
-                      <div className="flex justify-center py-4">
+                      <div className="flex justify-center py-2">
                         <button 
                           onClick={handleShowAnswerPlay}
                           className="px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold text-lg rounded-xl shadow-lg transition-all flex items-center space-x-2"
@@ -1114,7 +1396,7 @@
                           </div>
                         </div>
 
-                        {/* 실시간 점수 조정 그리드 */}
+                        {/* 실시간 점수 조절창 */}
                         <div className="border-t border-slate-700/60 pt-4 space-y-3">
                           <span className="text-xs font-bold text-indigo-400 uppercase block text-center">정답을 맞춘 모둠의 점수를 조절해 주세요!</span>
                           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
